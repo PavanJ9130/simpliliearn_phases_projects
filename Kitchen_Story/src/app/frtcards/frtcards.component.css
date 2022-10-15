@@ -1,0 +1,61 @@
+img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.card {
+    transition: all .2s ease-in-out;
+    width: 14rem;
+    min-width: 5rem;
+    max-width: 15rem;
+}
+
+.card img {
+    width: fit-content;
+    margin: auto;
+}
+
+.btn:hover {
+    background-color: #aee53d;
+    color: #00582f;
+    border-color: #00582f;
+}
+
+.btn {
+    font-size: 1.2rem;
+    border-color: #00582f;
+}
+
+.bi {
+    color: #00582f;
+}
+
+button {
+    width: fit-content;
+    height: auto;
+    align-items: center;
+}
+
+.card:hover {
+    /* transform: scale(1.1); */
+    /* box-shadow: inset 0px 0px 15px 0px #00000042; */
+    box-shadow: 0px 0px 15px 0px #00000042;
+
+}
+
+.frt-carousel {
+    border: 2px solid #0000001f;
+    border-radius: 10px;
+}
+
+.carousel-control-prev {
+    left: 7px;
+}
+
+.carousel-control-next {
+    right: 7px;
+}
+
+.container-fluid {
+    background-color: rgb(241 241 241);
+}

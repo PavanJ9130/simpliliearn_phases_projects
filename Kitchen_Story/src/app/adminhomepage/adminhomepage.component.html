@@ -1,0 +1,108 @@
+<!-- CSS for Adminpage -->
+<Style>
+    .form-control {
+        height: 2.5rem;
+    }
+
+    .form-label {
+        font-size: 1.2rem;
+    }
+</Style>
+
+<!-- Admin homepage -->
+<div class="container-fluid">
+    <!-- all listed Products -->
+    <div class="head p-2 d-flex justify-content-between align-items">
+        <h1>All Products</h1>
+        <button class="btn btn-success fs-5 p-2" data-bs-toggle="modal" data-bs-target="#addproductmodel">Add
+            Products</button>
+    </div>
+    <div class="card-md ">
+        <table class="table">
+            <thead>
+                <tr class="table-secondary fs-5">
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Product Price</th>
+                    <th>Product Category</th>
+                    <th>Functions</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let product of service.getproducts()">
+                <tr class="table-light">
+                    <th>{{product.id}}</th>
+                    <th>{{product.name.toUpperCase()}}</th>
+                    <th>&#8377;{{product.price}} per KG</th>
+                    <th>{{product.category.toUpperCase()}}</th>
+                    <th>
+
+                        <button class="btn btn-danger mx-1" (click)="removeproduct(product.id)">Delete</button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- add product modal -->
+<div class="modal fade" id="addproductmodel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addproductModelLabel">Add Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    #closebutton></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addproductform" (ngSubmit)="addproduct()"
+                    class="row g-3 needs-validation was-validated" novalidate="">
+                    <div class="inputboxes ">
+                        <!-- product id input -->
+                        <div class="form-outline mb-4">
+                            <label for="productidinput" class="form-label"><strong>Product ID</strong></label>
+                            <input type="number" id="productidinput" class="form-control" formControlName="id"
+                                [ngStyle]="{'border-color': id && id.invalid && id.touched ? '#fe8686': null }"
+                                required="" />
+                            <span *ngIf="id && id.invalid && id.touched" style=" color: #ff0000;">ID is required</span>
+                        </div>
+
+                        <!--product name  input -->
+                        <div class="form-outline mb-4">
+                            <label for="productidinput" class="form-label"><strong>Product Name</strong></label>
+                            <input type="text" id="nameinput" class="form-control" formControlName="name"
+                                [ngStyle]="{'border-color': name && name.invalid && name.touched ? '#fe8686': null }"
+                                required="" />
+                            <span *ngIf="name && name.invalid && name.touched" style=" color: #ff0000;">Product name is
+                                required</span>
+
+                        </div>
+                        <!-- product price  input -->
+                        <div class="form-outline mb-4">
+                            <label for="productidinput" class="form-label"><strong>Product Price</strong></label>
+                            <input type="number" id="priceinput" class="form-control" formControlName="price"
+                                [ngStyle]="{'border-color': price && price.invalid && price.touched ? '#fe8686': null }"
+                                required="" />
+                            <span *ngIf="price && price.invalid && price.touched " style="color: #ff0000;">
+                                Price is required</span>
+                        </div>
+                        <!-- product category  input -->
+                        <div class="form-outline mb-4">
+                            <label for="productidinput" class="form-label"><strong>Product Category</strong></label>
+                            <input type="text" id="categoryinput" class="form-control " formControlName="category"
+                                [ngStyle]="{'border-color': category && category.invalid && category.touched ? '#fe8686': null }"
+                                required="" />
+                            <span *ngIf="category && category.invalid && category.touched " style="color: #ff0000;">
+                                Category is required</span>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-success" value="Add Product"
+                            [disabled]="addproductform.invalid">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<style>
+    .search-box-form,
+    .form-control:focus,
+    .btn:hover {
+        box-shadow: 0 0 0 0.25rem rgb(166 233 29);
+        border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
+
+    }
+
+    .navbar a,
+    .btn {
+        font-size: 1.3rem;
+    }
+</style>
+<form class="search-box-form d-flex border border-success rounded" role="search">
+    <input class="form-control form-control-lg" type="search" placeholder="Search here" aria-label="Search"
+        style="border: 0px; " #searchvalue>
+    <button class="btn " type="submit" (click)="searchdata(searchvalue.value)" data-bs-target="#searchproduct"
+        data-bs-toggle="modal"><i class="bi bi-search"></i></button>
+</form>

@@ -1,0 +1,141 @@
+<Style>
+    @media (max-width: 600px) {
+        .card {
+            width: 100% !important;
+
+        }
+    }
+</Style>
+<div class="container-fluid d-flex justify-content-center align-items-center ">
+    <div class="card p-4 w-50 mt-5 ">
+        <div class="title text-center mb-4">
+            <h3>Sign in</h3>
+            <hr>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="userlogin()">
+            <div class="inputboxes">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <div class="d-flex">
+                        <i class="bi bi-person-fill fs-3"></i>
+                        <input type="email" id="emailinput" class="form-control" placeholder="Enter Email"
+                            formControlName="email"
+                            [ngStyle]="{'border-color': email && email.invalid && email.touched ? '#fe8686': null }" />
+
+                    </div>
+                    <span *ngIf="email && email.invalid && email.touched"
+                        style="margin-left: 30px; color: #ff0000;">Enter a valid Email</span>
+                </div>
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <div class="d-flex">
+                        <i class="bi bi-key-fill fs-3"></i>
+                        <input type="password" id="passwordinput" class="form-control" placeholder="Enter Password "
+                            formControlName="password"
+                            [ngStyle]="{'border-color': password && password.invalid && password.touched ? '#fe8686': null }" />
+                    </div>
+                    <span *ngIf="password && password.invalid && password.touched"
+                        style="margin-left: 30px; color: #ff0000;">Enter a valid password</span>
+                </div>
+            </div>
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+                <div class="col d-flex justify-content-center">
+                    <!-- Checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                        <label class="form-check-label" for="form2Example31"> Remember me </label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <!-- Button trigger modal forgot, password button -->
+                    <a class="color-success cursor-pointer" data-bs-toggle="modal" data-bs-target="#changepasswordmodel"
+                        role="button">
+                        Forgot password?
+                    </a>
+
+
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-primary btn-block  w-100" [disabled]="loginForm.invalid" value="Login">
+            <span *ngIf="!validuser" style="margin-left: 30px; color: #ff0000;">Username and Password is not valid
+            </span>
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>Not a member? <a routerLink="/register">Register</a></p>
+
+            </div>
+        </form>
+    </div>
+</div>
+<!--change password  Modal -->
+<div class="modal fade" id="changepasswordmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    #closebutton></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="changepasswordform" (ngSubmit)="changepassword()">
+                    <div class="inputboxes ">
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <div class="d-flex">
+                                <i class="bi bi-person-fill fs-3"></i>
+                                <input type="email" id="useremailinput" class="form-control" placeholder="Enter Email"
+                                    formControlName="useremail"
+                                    [ngStyle]="{'border-color': useremail && useremail.invalid && useremail.touched ? '#fe8686': null }" />
+
+                            </div>
+                            <span *ngIf="useremail && useremail.invalid && useremail.touched"
+                                style="margin-left: 30px; color: #ff0000;">Enter a valid
+                                Email</span>
+                        </div>
+
+                        <!--old Password input -->
+                        <div class="form-outline mb-4">
+                            <div class="d-flex">
+                                <i class="bi bi-key-fill fs-3"></i>
+                                <input type="password" id="oldpasswordinput" class="form-control"
+                                    placeholder="Enter Old Password " formControlName="oldpassword"
+                                    [ngStyle]="{'border-color': oldpassword && oldpassword.invalid && oldpassword.touched ? '#fe8686': null }" />
+                            </div>
+                            <span *ngIf="oldpassword && oldpassword.invalid && oldpassword.touched"
+                                style="margin-left: 30px; color: #ff0000;">password must be minimum
+                                of 6 character</span>
+
+                        </div>
+                        <!-- new password input -->
+                        <div class="form-outline mb-4">
+                            <div class="d-flex">
+                                <i class="bi bi-key-fill fs-3"></i>
+                                <input type="password" id="newpasswordinput" class="form-control"
+                                    placeholder="Enter New Password " formControlName="newpassword"
+                                    [ngStyle]="{'border-color': newpassword && newpassword.invalid && newpassword.touched || oldpassword.value===newpassword.value? '#fe8686': null }" />
+                            </div>
+                            <span
+                                *ngIf="newpassword && newpassword.invalid && newpassword.touched || oldpassword.value===newpassword.value"
+                                style="margin-left: 30px; color: #ff0000;">
+                                password Not to be same</span>
+                        </div>
+
+                    </div>
+                    <!-- Close and submit button -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Change Password"
+                            [disabled]="changepasswordform.invalid || oldpassword.value===newpassword.value">
+                        <span *ngIf="!ispasswordchange" style="margin-left: 30px; color: #ff0000;">Email and Old
+                            password
+                            is not valid
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

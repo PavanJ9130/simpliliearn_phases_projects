@@ -1,0 +1,22 @@
+img {
+    width: 1.8rem;
+    border: 1px solid #565656;
+    border-radius: 50%;
+}
+
+.nav-link:hover {
+    cursor: pointer;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.dropdown-toggle::after {
+    margin-left: 0;
+}
+
+.modal-backdrop {
+    z-index: 0;
+}

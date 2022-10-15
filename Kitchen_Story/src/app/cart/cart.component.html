@@ -1,0 +1,137 @@
+<section class="h-100 gradient-custom">
+    <div class="container py-5" *ngIf="usercart.items>0 else elsepart">
+        <div class="row d-flex justify-content-center my-4">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Cart - {{product.length}} items</h5>
+                    </div>
+                    <div class="card-body">
+                        <hr class="my-4" />
+                        <div class="row" *ngFor="let product of authser.usercart.product">
+                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                                <!-- Image -->
+                                <div class="bg-image hover-overlay hover-zoom ripple rounded"
+                                    data-mdb-ripple-color="light">
+                                    <img src="{{product.imgurl}}" class="card-img-top py-5 px-3" alt="tomato">
+                                </div>
+                            </div>
+                            <!-- product details -->
+                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                                <p><strong>{{product.name}}</strong></p>
+                                <p class="text-start ">
+                                    <strong>M.R.P &#8377; {{product.price}} KG </strong><br>
+                                    <strong>Total price &#8377;{{product.price * product.qty}} </strong>
+                                </p>
+                                <!-- Remove products -->
+                                <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                                    title="Remove item">
+                                    <i class="bi bi-trash"
+                                        (click)="rmvproduct(authser.usercart.product.indexof(product),product)"></i>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
+                                    title="Move to the wish list">
+                                    <i class="bi bi-heart"></i>
+                                </button>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                <!-- Quantity -->
+                                <div class="d-flex mb-4" style="max-width: 300px">
+                                    <div class="d-flex justify-content-around align-items-center">
+                                        <i class="bi bi-dash-circle fs-1" (click)="rmvqty(product.id)"></i>
+                                        <p class="m-2 fs-4">{{product.qty}}</p>
+                                        <i class="bi bi-plus-circle-fill fs-1 " (click)="addqty(product.id)"></i>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr class="" />
+                        </div>
+                        <a routerLink="home"> <i class="bi bi-box-arrow-left fs-1"> </i> </a>
+                        <!-- Single item -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li
+                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                Total Items
+                                <span>{{usercart.items}}</span>
+                            </li>
+                            <li
+                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                Total Price
+                                <span>{{usercart.totalprice}}</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                payment method
+                                <span>COD</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                Discount
+                                <span>0</span>
+                            </li>
+                            <li
+                                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                <div>
+                                    <strong>Total amount</strong>
+                                    <strong>
+                                        <p class="mb-0">(including VAT)</p>
+                                    </strong>
+                                </div>
+                                <span><strong>{{usercart.totalprice}}</strong></span>
+                            </li>
+                        </ul>
+
+                        <button type="button" class="btn btn-primary btn-lg btn-block w-100 fs-6" data-bs-toggle="modal"
+                            data-bs-target="#successmodel">
+                            Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #elsepart>
+        <div class="d-flex flex-column justify-content-center align-items-center my-5 ">
+
+            <img src="assets/img/emptycart.png" alt="cart Is Empty!">
+
+            <h3><a routerLink="home" class="btn  btn-outline-success m-2 fs-5">Back to Home</a></h3>
+
+        </div>
+    </ng-template>
+</section>
+<!-- order success Model -->
+<div class="modal fade" id="successmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+            </div> -->
+            <div class="modal-body">
+                <div class="closebtn" style="text-align: right;">
+                    <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"
+                        #closebutton></button>
+
+                </div>
+                <div class="thank-you-pop text-center ">
+                    <img src="assets/img/Green-Round-Tick.png" alt="">
+                    <h1>Order Place! </h1>
+                    <p>Thank You for Choosing Kitchenstory.</p>
+                    <h3 class="cupon-pop"><a class="btn btn-success" data-bs-dismiss="modal" (click)="orderplace()">Shop
+                            more</a></h3>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

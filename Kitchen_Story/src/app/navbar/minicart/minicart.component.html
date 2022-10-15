@@ -1,0 +1,16 @@
+<style>
+    a{
+    font-size: 1.3rem;
+}
+</style>
+    <ul class="navbar-nav me-auto d-flex flex-row justify-content-between">
+        <li class="nav-item">
+            <a class="bi bi-cart position-relative nav-link" routerLink="cart">
+                <span class="position-absolute top-11 start-40 translate-middle badge rounded-pill bg-danger"
+                    style="font-size: 0.6rem;">
+                    {{authser.usercart.items}}
+                </span>
+                Cart
+            </a>
+        </li>
+    </ul>

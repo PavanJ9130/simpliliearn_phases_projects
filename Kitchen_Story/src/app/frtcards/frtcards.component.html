@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="py-2">
+        <h1>All Products:</h1>
+    </div>
+    <div class="row ">
+        <div class="col p-2" *ngFor="let product of products">
+            <div class="card m-auto" value="1" #cartid>
+                <img src="{{product.imgurl}}" class="card-img-top py-5 px-3" alt="tomato">
+                <div class="card-body">
+                    <h5 class="card-title fs-3">{{product.name}}</h5>
+                    <p class="card-text">M.R.P &#8377; {{product.price}} KG </p>
+                    <button class="btn" (click)="addtocartclick(product.id,product)"
+                        *ngIf="!cartbtnshow[product.id] else qtybtns">Add to
+                        Cart</button>
+                    <ng-template #qtybtns>
+                        <div class="d-flex justify-content-around align-items-center">
+                            <i class="bi bi-dash-circle fs-1" (click)="rmvqty(product.id)"></i>
+                            <p class="m-0 fs-4">{{product.qty}}</p>
+                            <i class="bi bi-plus-circle-fill fs-1 " (click)="addqty(product.id)"></i>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

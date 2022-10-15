@@ -1,0 +1,17 @@
+<ul class="navbar-nav me-auto d-flex flex-row ">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle fs-5 text-decoration-underline" routerLink="account" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="assets/img/user icon.png" alt="profile" class="mr-4px">{{username}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="account">Profile</a>
+          <a class="dropdown-item" routerLink="account" data-bs-toggle="modal" data-bs-target="#passwordModel">Change Password</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="account">My Orders</a>
+        </div>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link fs-5" (click)="logout()">Logout</a>
+    </li>
+</ul>
+

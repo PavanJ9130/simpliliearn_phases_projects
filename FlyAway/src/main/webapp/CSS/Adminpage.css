@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+.adminlogin{
+display: none;
+}
+.airlineslist{
+display: flex;
+flex-direction:column;
+align-items: center;
+
+
+}
+.flightlist{
+display: flex;
+flex-direction:column;
+align-items: center;
+
+}
+.table{
+border: 1px solid #8d8d8d;
+margin: 3px;
+padding: 2px;
+max-width: 99%;
+margin-bottom: 50px;
+}
